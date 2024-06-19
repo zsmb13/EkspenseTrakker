@@ -1,4 +1,4 @@
-rootProject.name = "EkspsenseTrakker"
+rootProject.name = "EkspenseTrakker"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
