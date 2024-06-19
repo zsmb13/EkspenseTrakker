@@ -3,19 +3,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.room.RoomDatabase
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
 
 @Composable
 @Preview
-fun App(databaseBuilder: RoomDatabase.Builder<ExpenseDatabase>) {
+fun App() {
     MaterialTheme {
-        val database = remember { databaseBuilder.getRoomDatabase() }
-        val expenseDao = remember(database) { database.expenseDao() }
+        val expenseDao = koinInject<ExpenseDao>()
 
         val expenses: List<Expense> by expenseDao.getAll().collectAsState(emptyList())
 

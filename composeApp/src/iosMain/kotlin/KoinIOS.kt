@@ -1,0 +1,3 @@
+fun initKoin() {
+    initKoin(getDatabaseBuilder())
+}
