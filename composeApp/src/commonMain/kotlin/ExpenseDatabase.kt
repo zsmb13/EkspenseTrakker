@@ -2,9 +2,9 @@ import androidx.room.*
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import kotlinx.coroutines.flow.Flow 
+import kotlinx.coroutines.flow.Flow
 
-@Database(entities = [Expense::class], version = 1)
+@Database(entities = [Expense::class, Person::class], version = 1)
 abstract class ExpenseDatabase : RoomDatabase(), DB {
     abstract fun expenseDao(): ExpenseDao
 
@@ -19,7 +19,7 @@ fun RoomDatabase.Builder<ExpenseDatabase>.getRoomDatabase(): ExpenseDatabase {
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()
-    
+
 }
 
 // Workaround for an exception...
@@ -29,18 +29,28 @@ interface DB {
 
 @Dao
 interface ExpenseDao {
-    @Query("SELECT * FROM expense")
-    fun getAll(): Flow<List<Expense>>
-    
+    @Transaction
+    @Query("SELECT * FROM expenses")
+    fun getAllWithPeople(): Flow<List<ExpenseWithPerson>>
+
+    @Query("SELECT * FROM people")
+    fun getAllPeople(): Flow<List<Person>>
+
     @Insert
     suspend fun insert(expense: Expense)
-    
-    @Query("DELETE FROM expense")
-    suspend fun deleteAll()
-}
 
-@Entity(tableName = "expense")
-data class Expense(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
-)
+    @Insert
+    suspend fun insert(person: Person)
+
+    @Transaction
+    suspend fun deleteAll() {
+        deleteAllExpenses()
+        deleteAllPeople()
+    }
+
+    @Query("DELETE FROM expenses")
+    suspend fun deleteAllExpenses()
+
+    @Query("DELETE FROM people")
+    suspend fun deleteAllPeople()
+}
