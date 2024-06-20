@@ -22,7 +22,7 @@ fun RoomDatabase.Builder<ExpenseDatabase>.getRoomDatabase(): ExpenseDatabase {
 
 }
 
-// Workaround for an exception...
+// TODO remove this workaround when https://issuetracker.google.com/issues/348166275 is fixed
 interface DB {
     fun clearAllTables() {}
 }
