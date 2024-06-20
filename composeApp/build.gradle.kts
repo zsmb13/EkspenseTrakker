@@ -52,6 +52,7 @@ kotlin {
             implementation("com.benasher44:uuid:0.8.4")
             implementation(libs.navigation.compose)
             implementation(libs.lifecycle.viewmodel)
+            implementation(libs.androidx.datastore.preferences)
         }
     }
 }

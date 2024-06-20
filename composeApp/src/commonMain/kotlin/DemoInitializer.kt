@@ -5,17 +5,15 @@ import androidx.compose.runtime.LaunchedEffect
 fun DemoInitializer(expenseDao: ExpenseDao) {
     LaunchedEffect(Unit) {
         expenseDao.deleteAll()
-        
+
         val people = listOf(
-            Person(randomUUID(), "Alice"),
-            Person(randomUUID(), "Bob"),
-            Person(randomUUID(), "Charlie"),
-            Person(randomUUID(), "David"),
-            Person(randomUUID(), "Eve"),
+            Person("random-id-for-alice", "Alice"),
+            Person("random-id-for-bob", "Bob"),
+            Person("random-id-for-charlie", "Charlie"),
+            Person("random-id-for-david", "David"),
+            Person("random-id-for-eve", "Eve"),
         )
-        people.forEach {
-            expenseDao.insert(it)
-        }
+        people.forEach { expenseDao.insert(it) }
 
         listOf(
             Expense(randomUUID(), people[1 - 1].id, 11),

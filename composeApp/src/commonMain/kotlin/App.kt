@@ -41,7 +41,6 @@ fun App() {
                 AddScreen(onRecordCreated = { navController.navigateUp() })
             }
         }
-
     }
 }
 

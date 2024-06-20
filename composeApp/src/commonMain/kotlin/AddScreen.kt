@@ -17,6 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
@@ -24,17 +27,33 @@ import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
-class AddViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
+class AddViewModel(
+    private val expenseDao: ExpenseDao,
+    private val dataStore: DataStore<Preferences>,
+) : ViewModel() {
     val people: StateFlow<List<Person>> = expenseDao.getAllPeople()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    val expenses: StateFlow<List<ExpenseWithPerson>> = expenseDao.getAllWithPeople()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    val personId = MutableStateFlow<String?>(null)
 
     val recordCreated = MutableStateFlow(false)
 
-    fun createRecord(expense: Expense) {
+    fun initialize() {
         viewModelScope.launch {
+            personId.update { dataStore.data.map { it[lastUsedPersonId] }.first() }
+        }
+    }
+
+    fun selectPerson(personId: String) {
+        println("Selected $personId")
+        this.personId.update { personId }
+    }
+
+    fun createRecord(amount: String) {
+        val expense = Expense(randomUUID(), personId.value!!, amount.toInt())
+
+        viewModelScope.launch {
+            dataStore.edit { it[lastUsedPersonId] = expense.paidByPersonId }
             expenseDao.insert(expense)
             recordCreated.update { true }
         }
@@ -44,32 +63,34 @@ class AddViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
 @OptIn(KoinExperimentalAPI::class)
 @Composable
 fun AddScreen(onRecordCreated: () -> Unit) {
-    val addViewModel = koinViewModel<AddViewModel>()
+    val viewModel = koinViewModel<AddViewModel>()
+    LaunchedEffect(viewModel) {
+        viewModel.initialize()
+    }
 
-    val recordCreated by addViewModel.recordCreated.collectAsState()
+    val recordCreated by viewModel.recordCreated.collectAsState()
     LaunchedEffect(recordCreated) {
         if (recordCreated) onRecordCreated()
     }
 
-    var personId by remember { mutableStateOf<String?>(null) }
     var amount by remember { mutableStateOf("") }
 
-    val people by addViewModel.people.collectAsState()
+    val people by viewModel.people.collectAsState()
+    val personId by viewModel.personId.collectAsState()
 
     Column(Modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyRow {
             items(people) { person ->
                 PersonItem(
                     person = person,
-                    modifier = Modifier.clickable {
-                        personId = if (person.id == personId) null else person.id
-                    }.then(
-                        if (person.id == personId) {
-                            Modifier.border(2.dp, Color.Red)
-                        } else {
-                            Modifier
-                        }
-                    )
+                    modifier = Modifier
+                        .clickable { viewModel.selectPerson(person.id) }
+                        .then(
+                            when (person.id) {
+                                personId -> Modifier.border(2.dp, Color.Red)
+                                else -> Modifier
+                            }
+                        )
                 )
             }
         }
@@ -82,10 +103,8 @@ fun AddScreen(onRecordCreated: () -> Unit) {
         )
 
         Button(
-            onClick = {
-                addViewModel.createRecord(Expense(randomUUID(), personId!!, amount.toInt()))
-            },
-            enabled = personId != null && amount.isNotEmpty()
+            onClick = { viewModel.createRecord(amount) },
+            enabled = personId != null && amount.isNotEmpty(),
         ) {
             Text("Add record")
         }
