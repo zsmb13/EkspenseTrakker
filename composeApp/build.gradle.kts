@@ -17,6 +17,8 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -29,10 +31,15 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
 
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
         }
         commonMain {
             kotlin.srcDir("build/generated/ksp/metadata")
@@ -93,6 +100,8 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+
+compose.desktop.application.mainClass = "MainKt"
 
 dependencies {
     add("kspCommonMainMetadata", libs.androidx.room.compiler)
