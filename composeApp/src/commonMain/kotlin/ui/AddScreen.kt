@@ -20,6 +20,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import ekspensetrakker.composeapp.generated.resources.Res
+import ekspensetrakker.composeapp.generated.resources.add_expense
+import ekspensetrakker.composeapp.generated.resources.amount
+import ekspensetrakker.composeapp.generated.resources.description
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -78,7 +83,7 @@ fun AddScreen(
         TextField(
             value = amount,
             onValueChange = { amount = it.filter(Char::isDigit) },
-            label = { Text("Amount") },
+            label = { Text(stringResource(Res.string.amount)) },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier.padding(vertical = 24.dp).widthIn(max = 200.dp),
         )
@@ -86,7 +91,7 @@ fun AddScreen(
         TextField(
             value = description,
             onValueChange = { description = it },
-            label = { Text("Description") },
+            label = { Text(stringResource(Res.string.description)) },
         )
 
 
@@ -94,7 +99,7 @@ fun AddScreen(
             onClick = { viewModel.createRecord(amount.toInt(), description) },
             enabled = personId != null && amount.toIntOrNull() != null,
         ) {
-            Text("Add record")
+            Text(stringResource(Res.string.add_expense))
         }
     }
 }
