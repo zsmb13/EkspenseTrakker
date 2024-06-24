@@ -1,17 +1,18 @@
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 fun AddScreen(
     onRecordCreated: () -> Unit,
+    onBack: () -> Unit,
     viewModel: AddViewModel = koinViewModel(),
 ) {
     LaunchedEffect(viewModel) {
@@ -44,9 +46,15 @@ fun AddScreen(
     val personId by viewModel.personId.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(vertical = 120.dp, horizontal = 8.dp),
+        modifier = Modifier.fillMaxSize().background(Color.White).padding(vertical = 20.dp, horizontal = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.TopStart) {
+            IconButton(onClick = onBack) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            }
+        }
+        Spacer(Modifier.height(100.dp))
         val roundedShape = remember { RoundedCornerShape(12.dp) }
         LazyRow {
             items(people) { person ->
