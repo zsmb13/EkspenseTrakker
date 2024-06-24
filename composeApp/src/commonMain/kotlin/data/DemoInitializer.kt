@@ -1,24 +1,24 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import ekspensetrakker.composeapp.generated.resources.Res
-import ekspensetrakker.composeapp.generated.resources.hadi
+import ekspensetrakker.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.koin.compose.koinInject
 
 private val demoPeople = listOf(
-    Person("random-id-for-alice", "Alice"),
-    Person("random-id-for-bob", "Bob"),
-    Person("random-id-for-charlie", "Charlie"),
-    Person("random-id-for-david", "David"),
-    Person("random-id-for-eve", "Eve"),
+    Person("random-id-for-a", "Alex"),
+    Person("random-id-for-b", "Blake"),
+    Person("random-id-for-c", "Casey"),
+    Person("random-id-for-d", "Drew "),
+    Person("random-id-for-e", "Erin"),
 )
 
 private val demoAvatars = listOf(
-    Res.drawable.hadi,
-    Res.drawable.hadi,
-    Res.drawable.hadi,
-    Res.drawable.hadi,
-    Res.drawable.hadi,
+    Res.drawable.stock1,
+    Res.drawable.stock2,
+    Res.drawable.stock3,
+    Res.drawable.stock4,
+    Res.drawable.stock5,
 )
 
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
