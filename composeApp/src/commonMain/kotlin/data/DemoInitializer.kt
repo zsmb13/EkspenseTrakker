@@ -33,11 +33,14 @@ fun DemoInitializer(
         demoPeople.forEach { expenseDao.insert(it) }
 
         listOf(
-            Expense(randomUUID(), demoPeople[1 - 1].id, 11, "Business trip #1"),
-            Expense(randomUUID(), demoPeople[2 - 1].id, 22, "Business trip #2"),
-            Expense(randomUUID(), demoPeople[3 - 1].id, 33, "Business trip #3"),
-            Expense(randomUUID(), demoPeople[4 - 1].id, 44, "Business trip #4"),
-            Expense(randomUUID(), demoPeople[5 - 1].id, 55, "Business trip #5"),
+            Expense(randomUUID(), demoPeople[1 - 1].id, 129, "Business trip"),
+            Expense(randomUUID(), demoPeople[2 - 1].id, 12, "Kodee Meet & Greet"),
+            Expense(randomUUID(), demoPeople[3 - 1].id, 57, "Standard Library Card"),
+            Expense(randomUUID(), demoPeople[4 - 1].id, 86, "droidCon Moon Tickets"),
+            Expense(randomUUID(), demoPeople[5 - 1].id, 3, "Cat Tax 🐱"),
+            Expense(randomUUID(), demoPeople[1 - 1].id, 8, "Omea License"),
+            Expense(randomUUID(), demoPeople[5 - 1].id, 60, "Multiplatform Multivitamins"),
+            Expense(randomUUID(), demoPeople[3 - 1].id, 12, "Kotlin in Action, 2nd Edition"),
         ).forEach { expenseDao.insert(it) }
     }
 }
