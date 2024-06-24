@@ -33,11 +33,11 @@ fun DemoInitializer(
         demoPeople.forEach { expenseDao.insert(it) }
 
         listOf(
-            Expense(randomUUID(), demoPeople[1 - 1].id, 11),
-            Expense(randomUUID(), demoPeople[2 - 1].id, 22),
-            Expense(randomUUID(), demoPeople[3 - 1].id, 33),
-            Expense(randomUUID(), demoPeople[4 - 1].id, 44),
-            Expense(randomUUID(), demoPeople[5 - 1].id, 55),
+            Expense(randomUUID(), demoPeople[1 - 1].id, 11, "Business trip #1"),
+            Expense(randomUUID(), demoPeople[2 - 1].id, 22, "Business trip #2"),
+            Expense(randomUUID(), demoPeople[3 - 1].id, 33, "Business trip #3"),
+            Expense(randomUUID(), demoPeople[4 - 1].id, 44, "Business trip #4"),
+            Expense(randomUUID(), demoPeople[5 - 1].id, 55, "Business trip #5"),
         ).forEach { expenseDao.insert(it) }
     }
 }

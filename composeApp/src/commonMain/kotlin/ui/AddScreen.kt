@@ -2,6 +2,7 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -37,6 +38,7 @@ fun AddScreen(
     }
 
     var amount by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
 
     val people by viewModel.people.collectAsState()
     val personId by viewModel.personId.collectAsState()
@@ -60,21 +62,29 @@ fun AddScreen(
                     modifier = Modifier
                         .clip(roundedShape)
                         .border(2.dp, borderColor, roundedShape)
-                        .clickable { viewModel.selectPerson(person.id) }
+                        .clickable { viewModel.selectPerson(person.id) },
                 )
             }
         }
 
         TextField(
             value = amount,
-            onValueChange = { amount = it.filter { char -> char.isDigit() } },
+            onValueChange = { amount = it.filter(Char::isDigit) },
+            label = { Text("Amount") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier = Modifier.padding(vertical = 24.dp).widthIn(max = 200.dp), textStyle = LocalTextStyle.current,
+            modifier = Modifier.padding(vertical = 24.dp).widthIn(max = 200.dp),
         )
 
+        TextField(
+            value = description,
+            onValueChange = { description = it },
+            label = { Text("Description") },
+        )
+
+
         Button(
-            onClick = { viewModel.createRecord(amount) },
-            enabled = personId != null && amount.isNotEmpty(),
+            onClick = { viewModel.createRecord(amount.toInt(), description) },
+            enabled = personId != null && amount.toIntOrNull() != null,
         ) {
             Text("Add record")
         }

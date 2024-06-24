@@ -17,6 +17,7 @@ data class Expense(
     // TODO replace with Long once https://issuetracker.google.com/issues/341002184 is fixed
     val paidByPersonId: String,
     val amount: Int,
+    val description: String,
 )
 
 @Entity(tableName = "people")

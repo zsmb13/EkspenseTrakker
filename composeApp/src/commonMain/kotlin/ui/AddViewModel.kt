@@ -24,12 +24,16 @@ class AddViewModel(
     }
 
     fun selectPerson(personId: String) {
-        println("Selected $personId")
         this.personId.update { personId }
     }
 
-    fun createRecord(amount: String) {
-        val expense = Expense(randomUUID(), personId.value!!, amount.toInt())
+    fun createRecord(amount: Int, description: String) {
+        val expense = Expense(
+            id = randomUUID(),
+            paidByPersonId = requireNotNull(personId.value),
+            amount = amount,
+            description = description,
+        )
 
         viewModelScope.launch {
             dataStore.edit { it[lastUsedPersonId] = expense.paidByPersonId }

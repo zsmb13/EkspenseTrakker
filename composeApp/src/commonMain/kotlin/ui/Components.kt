@@ -27,9 +27,7 @@ fun PersonItem(person: Person, modifier: Modifier = Modifier) {
 
 @Composable
 fun Avatar(person: Person, modifier: Modifier = Modifier) {
-    val color = remember(person) { Color(120, 50, person.name.hashCode()) }
-    
-    Box(modifier.size(48.dp).clip(CircleShape).background(color)) {
+    Box(modifier.size(48.dp).clip(CircleShape)) {
         peopleToAvatars[person]?.let {
             Image(imageResource(it), null, Modifier.fillMaxSize())
         }
@@ -39,15 +37,11 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 @Composable
 fun ExpenseItem(expense: ExpenseWithPerson) {
     Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Default.ShoppingCart, null)
+        Avatar(expense.paidBy, Modifier.size(40.dp))
         Spacer(Modifier.size(16.dp))
         Column(Modifier.weight(1f)) {
-            Text("KotlinConf catering", fontSize = 20.sp)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("paid by")
-                Avatar(expense.paidBy, Modifier.padding(horizontal = 4.dp).size(20.dp))
-                Text(expense.paidBy.name)
-            }
+            Text(expense.expense.description, fontSize = 20.sp)
+            Text("paid by ${expense.paidBy.name}")
         }
         Text("$${expense.expense.amount}")
     }
