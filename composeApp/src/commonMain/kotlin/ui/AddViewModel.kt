@@ -19,7 +19,7 @@ class AddViewModel(
 
     fun initialize() {
         viewModelScope.launch {
-            personId.update { dataStore.data.map { it[lastUsedPersonId] }.first() }
+            personId.update { dataStore.data.first()[lastUsedPersonId] }
         }
     }
 

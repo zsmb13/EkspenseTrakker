@@ -20,10 +20,11 @@ import org.koin.core.annotation.KoinExperimentalAPI
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
-fun HomeScreen(onAddNewRecord: () -> Unit) {
-    val homeViewModel = koinViewModel<HomeViewModel>()
-
-    val expenses by homeViewModel.expenses.collectAsState()
+fun HomeScreen(
+    onAddNewRecord: () -> Unit,
+    viewModel: HomeViewModel = koinViewModel(),
+) {
+    val expenses by viewModel.expenses.collectAsState()
 
     val sum = remember(expenses) { expenses.sumOf { it.expense.amount } }
 

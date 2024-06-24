@@ -23,8 +23,10 @@ import org.koin.core.annotation.KoinExperimentalAPI
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
-fun AddScreen(onRecordCreated: () -> Unit) {
-    val viewModel = koinViewModel<AddViewModel>()
+fun AddScreen(
+    onRecordCreated: () -> Unit,
+    viewModel: AddViewModel = koinViewModel(),
+) {
     LaunchedEffect(viewModel) {
         viewModel.initialize()
     }

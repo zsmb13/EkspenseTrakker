@@ -19,7 +19,6 @@ fun RoomDatabase.Builder<ExpenseDatabase>.getRoomDatabase(): ExpenseDatabase {
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()
-
 }
 
 // TODO remove this workaround when https://issuetracker.google.com/issues/348166275 is fixed

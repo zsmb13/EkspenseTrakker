@@ -10,10 +10,8 @@ import org.koin.compose.koinInject
 @Preview
 fun App() {
     MaterialTheme {
-        val expenseDao = koinInject<ExpenseDao>()
-
         // TODO remove hardcoded init
-        DemoInitializer(expenseDao)
+        DemoInitializer()
 
         val navController = rememberNavController()
         NavHost(navController, startDestination = "home") {

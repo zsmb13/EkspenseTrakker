@@ -3,6 +3,7 @@ import androidx.compose.runtime.LaunchedEffect
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.hadi
 import org.jetbrains.compose.resources.DrawableResource
+import org.koin.compose.koinInject
 
 private val demoPeople = listOf(
     Person("random-id-for-alice", "Alice"),
@@ -23,7 +24,9 @@ private val demoAvatars = listOf(
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
 
 @Composable
-fun DemoInitializer(expenseDao: ExpenseDao) {
+fun DemoInitializer(
+    expenseDao: ExpenseDao = koinInject(),
+) {
     LaunchedEffect(Unit) {
         expenseDao.deleteAll()
 
