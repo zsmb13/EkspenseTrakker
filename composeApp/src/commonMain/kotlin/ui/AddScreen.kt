@@ -19,7 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.add_expense
 import ekspensetrakker.composeapp.generated.resources.amount
@@ -59,7 +61,7 @@ fun AddScreen(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
             }
         }
-        Spacer(Modifier.height(100.dp))
+        Spacer(Modifier.height(70.dp))
         val roundedShape = remember { RoundedCornerShape(12.dp) }
         LazyRow {
             items(people) { person ->
@@ -83,6 +85,7 @@ fun AddScreen(
         TextField(
             value = amount,
             onValueChange = { amount = it.filter(Char::isDigit) },
+            textStyle = LocalTextStyle.current.copy(fontSize = 30.sp, textAlign = TextAlign.Center),
             label = { Text(stringResource(Res.string.amount)) },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier.padding(vertical = 24.dp).widthIn(max = 200.dp),
@@ -92,6 +95,7 @@ fun AddScreen(
             value = description,
             onValueChange = { description = it },
             label = { Text(stringResource(Res.string.description)) },
+            modifier = Modifier.padding(bottom = 24.dp)
         )
 
 
