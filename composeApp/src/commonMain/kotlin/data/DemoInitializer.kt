@@ -36,7 +36,7 @@ fun DemoInitializer(
             Expense(randomUUID(), demoPeople[1 - 1].id, 129, "Business trip"),
             Expense(randomUUID(), demoPeople[2 - 1].id, 12, "Kodee Meet & Greet"),
             Expense(randomUUID(), demoPeople[3 - 1].id, 57, "Standard Library Card"),
-            Expense(randomUUID(), demoPeople[4 - 1].id, 86, "droidCon Moon Tickets"),
+            Expense(randomUUID(), demoPeople[4 - 1].id, 86, "droidcon Moon Tickets"),
             Expense(randomUUID(), demoPeople[5 - 1].id, 3, "Cat Tax 🐱"),
             Expense(randomUUID(), demoPeople[1 - 1].id, 8, "Omea License"),
             Expense(randomUUID(), demoPeople[5 - 1].id, 60, "Multiplatform Multivitamins"),
