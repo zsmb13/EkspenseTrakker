@@ -7,21 +7,19 @@ import androidx.navigation.NavBackStackEntry
 
 val enterT: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) = {
     slideIntoContainer(
-        AnimatedContentTransitionScope.SlideDirection.Left,
-        animationSpec = tween(700)
+        AnimatedContentTransitionScope.SlideDirection.Start,
+        animationSpec = tween(400)
     )
 }
 
 val exitT: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
-    fadeOut(
-        tween(2000)
-    )
+    fadeOut(tween(800))
 }
 
 val popExitT: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
     slideOutOfContainer(
-        AnimatedContentTransitionScope.SlideDirection.Right,
-        animationSpec = tween(700)
+        AnimatedContentTransitionScope.SlideDirection.End,
+        animationSpec = tween(400)
     )
 }
 

@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 
 class AddViewModel(
     private val expenseDao: ExpenseDao,
-    private val dataStore: DataStore<Preferences>,
 ) : ViewModel() {
     val people: StateFlow<List<Person>> = expenseDao.getAllPeople()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
@@ -16,12 +15,6 @@ class AddViewModel(
     val personId = MutableStateFlow<String?>(null)
 
     val recordCreated = MutableStateFlow(false)
-
-    fun initialize() {
-        viewModelScope.launch {
-            personId.update { dataStore.data.first()[lastUsedPersonId] }
-        }
-    }
 
     fun selectPerson(personId: String) {
         this.personId.update { personId }
@@ -36,7 +29,6 @@ class AddViewModel(
         )
 
         viewModelScope.launch {
-            dataStore.edit { it[lastUsedPersonId] = expense.paidByPersonId }
             expenseDao.insert(expense)
             recordCreated.update { true }
         }

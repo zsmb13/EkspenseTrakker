@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.imageResource
@@ -35,7 +36,12 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 
     Box(modifier.size(48.dp).clip(CircleShape).background(color)) {
         peopleToAvatars[person]?.let {
-            Image(imageResource(it), null, Modifier.fillMaxSize())
+            Image(
+                bitmap = imageResource(it),
+                contentDescription = person.name,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+            )
         }
     }
 }

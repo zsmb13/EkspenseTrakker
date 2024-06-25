@@ -1,8 +1,10 @@
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,9 +36,11 @@ fun HomeScreen(
             }
         }
         Spacer(
-            Modifier.padding(5.dp).height(2.dp).fillMaxWidth().background(Color.Blue)
+            Modifier.padding(5.dp).height(2.dp).fillMaxWidth().background(MaterialTheme.colors.primary)
         )
-        Text("Total: $$sum", fontSize = 24.sp, modifier = Modifier.padding(16.dp))
+        Text("Total: $$sum", fontSize = 24.sp, modifier = Modifier.padding(16.dp).clickable {
+            viewModel.toggleTheme()
+        })
         Button(onClick = { onAddNewRecord() }) {
             Text("Add new record")
         }
