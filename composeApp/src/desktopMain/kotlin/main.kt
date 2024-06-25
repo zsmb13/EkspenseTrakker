@@ -4,7 +4,7 @@ import androidx.compose.ui.window.application
 
 fun main() {
     initKoin(
-        databaseBuilder = getDatabaseBuilder(),
+        databaseBuilder = createDatabaseBuilder(),
         dataStore = createDataStore(),
     )
 

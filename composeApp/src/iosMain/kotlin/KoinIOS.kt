@@ -1,6 +1,6 @@
 fun initKoin() {
     initKoin(
-        databaseBuilder = getDatabaseBuilder(),
+        databaseBuilder = createDatabaseBuilder(),
         dataStore = createDataStore(),
     )
 }

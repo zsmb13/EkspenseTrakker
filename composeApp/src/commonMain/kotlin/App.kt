@@ -11,7 +11,6 @@ import ui.popEnterT
 import ui.popExitT
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
         // TODO remove hardcoded init

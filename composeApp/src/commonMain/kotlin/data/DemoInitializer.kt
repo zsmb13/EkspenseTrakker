@@ -5,12 +5,23 @@ import ekspensetrakker.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.koin.compose.koinInject
 
-private val demoPeople = listOf(
+val demoPeople = listOf(
     Person("random-id-for-a", "Alex"),
     Person("random-id-for-b", "Blake"),
     Person("random-id-for-c", "Casey"),
-    Person("random-id-for-d", "Drew "),
+    Person("random-id-for-d", "Drew"),
     Person("random-id-for-e", "Erin"),
+)
+
+val demoExpenses = listOf(
+    Expense(randomUUID(), demoPeople.random().id, 129, "Business trip"),
+    Expense(randomUUID(), demoPeople.random().id, 12, "Kodee Meet & Greet"),
+    Expense(randomUUID(), demoPeople.random().id, 57, "Standard Library Card"),
+    Expense(randomUUID(), demoPeople.random().id, 86, "droidcon Moon Tickets"),
+    Expense(randomUUID(), demoPeople.random().id, 3, "Cat Tax 🐱"),
+    Expense(randomUUID(), demoPeople.random().id, 8, "Omea License"),
+    Expense(randomUUID(), demoPeople.random().id, 60, "Multiplatform Multivitamins"),
+    Expense(randomUUID(), demoPeople.random().id, 12, "Kotlin in Action, 2nd Edition"),
 )
 
 private val demoAvatars = listOf(
@@ -29,18 +40,7 @@ fun DemoInitializer(
 ) {
     LaunchedEffect(Unit) {
         expenseDao.deleteAll()
-
         demoPeople.forEach { expenseDao.insert(it) }
-
-        listOf(
-            Expense(randomUUID(), demoPeople[1 - 1].id, 129, "Business trip"),
-            Expense(randomUUID(), demoPeople[2 - 1].id, 12, "Kodee Meet & Greet"),
-            Expense(randomUUID(), demoPeople[3 - 1].id, 57, "Standard Library Card"),
-            Expense(randomUUID(), demoPeople[4 - 1].id, 86, "droidcon Moon Tickets"),
-            Expense(randomUUID(), demoPeople[5 - 1].id, 3, "Cat Tax 🐱"),
-            Expense(randomUUID(), demoPeople[1 - 1].id, 8, "Omea License"),
-            Expense(randomUUID(), demoPeople[5 - 1].id, 60, "Multiplatform Multivitamins"),
-            Expense(randomUUID(), demoPeople[3 - 1].id, 12, "Kotlin in Action, 2nd Edition"),
-        ).forEach { expenseDao.insert(it) }
+        demoExpenses.forEach { expenseDao.insert(it) }
     }
 }

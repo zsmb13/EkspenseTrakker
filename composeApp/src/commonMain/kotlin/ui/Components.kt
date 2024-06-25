@@ -2,10 +2,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,6 +12,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+
+@Preview
+@Composable
+fun PersonItemPreview() {
+    PersonItem(Person("", "Preview Pam"))
+}
 
 @Composable
 fun PersonItem(person: Person, modifier: Modifier = Modifier) {
@@ -27,22 +31,33 @@ fun PersonItem(person: Person, modifier: Modifier = Modifier) {
 
 @Composable
 fun Avatar(person: Person, modifier: Modifier = Modifier) {
-    Box(modifier.size(48.dp).clip(CircleShape)) {
+    val color = remember(person) { Color(120, person.name.hashCode() % 255, 100) }
+
+    Box(modifier.size(48.dp).clip(CircleShape).background(color)) {
         peopleToAvatars[person]?.let {
             Image(imageResource(it), null, Modifier.fillMaxSize())
         }
     }
 }
 
+@Preview
 @Composable
-fun ExpenseItem(expense: ExpenseWithPerson) {
+fun ExpenseItemPreview() {
+    ExpenseItem(
+        expense = Expense("", "", 20, "Description here"),
+        paidBy = Person("", "James"),
+    )
+}
+
+@Composable
+fun ExpenseItem(expense: Expense, paidBy: Person) {
     Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Avatar(expense.paidBy, Modifier.size(40.dp))
+        Avatar(paidBy, Modifier.size(40.dp))
         Spacer(Modifier.size(16.dp))
         Column(Modifier.weight(1f)) {
-            Text(expense.expense.description, fontSize = 20.sp)
-            Text("paid by ${expense.paidBy.name}")
+            Text(expense.description, fontSize = 20.sp)
+            Text("paid by ${paidBy.name}")
         }
-        Text("$${expense.expense.amount}")
+        Text("$${expense.amount}")
     }
 }
