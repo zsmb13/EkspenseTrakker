@@ -12,12 +12,14 @@ class AddViewModel(
     val people: StateFlow<List<Person>> = expenseDao.getAllPeople()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    val personId = MutableStateFlow<String?>(null)
+    private val _personId = MutableStateFlow<String?>(null)
+    val personId: StateFlow<String?> = _personId
 
-    val recordCreated = MutableStateFlow(false)
+    private val _recordCreated = MutableStateFlow(false)
+    val recordCreated: StateFlow<Boolean> = _recordCreated
 
     fun selectPerson(personId: String) {
-        this.personId.update { personId }
+        this._personId.update { personId }
     }
 
     fun createRecord(amount: Int, description: String) {
@@ -30,7 +32,7 @@ class AddViewModel(
 
         viewModelScope.launch {
             expenseDao.insert(expense)
-            recordCreated.update { true }
+            _recordCreated.update { true }
         }
     }
 }
