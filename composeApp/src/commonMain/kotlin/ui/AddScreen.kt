@@ -50,10 +50,8 @@ fun AddScreen(
             modifier = Modifier.fillMaxSize().padding(vertical = 20.dp, horizontal = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.TopStart) {
-                IconButton(onClick = onBack) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                }
+            IconButton(onClick = onBack, Modifier.align(Alignment.Start)) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
             }
             Spacer(Modifier.height(70.dp))
             val roundedShape = remember { RoundedCornerShape(12.dp) }

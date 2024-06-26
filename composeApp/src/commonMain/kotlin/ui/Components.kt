@@ -50,7 +50,7 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 @Composable
 fun ExpenseItemPreview() {
     ExpenseItem(
-        expense = Expense("", "", 20, "Description here"),
+        expense = Expense("", "", 20, "Real business expense"),
         paidBy = Person("", "James"),
     )
 }
@@ -59,8 +59,7 @@ fun ExpenseItemPreview() {
 fun ExpenseItem(expense: Expense, paidBy: Person) {
     Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
         Avatar(paidBy, Modifier.size(40.dp))
-        Spacer(Modifier.size(16.dp))
-        Column(Modifier.weight(1f)) {
+        Column(Modifier.padding(horizontal = 16.dp).weight(1f)) {
             Text(expense.description, fontSize = 20.sp)
             Text("paid by ${paidBy.name}")
         }
