@@ -15,9 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ekspensetrakker.composeapp.generated.resources.*
+import ekspensetrakker.composeapp.generated.resources.Res
+import ekspensetrakker.composeapp.generated.resources.add_expense
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
-
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
@@ -27,7 +30,7 @@ fun HomeScreen(
 ) {
     val expenses by viewModel.expenses.collectAsState()
 
-    val sum = remember(expenses) { expenses.sumOf { it.expense.amount } }
+    val total = remember(expenses) { expenses.sumOf { it.expense.amount } }
 
     Column(Modifier.fillMaxSize().padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyColumn(Modifier.fillMaxWidth().weight(1f)) {
@@ -38,11 +41,11 @@ fun HomeScreen(
         Spacer(
             Modifier.padding(5.dp).height(2.dp).fillMaxWidth().background(MaterialTheme.colors.primary)
         )
-        Text("Total: $$sum", fontSize = 24.sp, modifier = Modifier.padding(16.dp).clickable {
+        Text(stringResource(Res.string.total, total), fontSize = 24.sp, modifier = Modifier.padding(16.dp).clickable {
             viewModel.toggleTheme()
         })
         Button(onClick = { onAddNewRecord() }) {
-            Text("Add new record")
+            Text(stringResource(Res.string.add_expense))
         }
     }
 }
