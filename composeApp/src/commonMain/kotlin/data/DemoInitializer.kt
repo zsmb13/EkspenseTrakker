@@ -1,9 +1,12 @@
+package data
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.koin.compose.koinInject
+import randomUUID
 
 val demoPeople = listOf(
     Person("random-id-for-a", "Alex"),
@@ -24,6 +27,10 @@ val demoExpenses = listOf(
     Expense(randomUUID(), demoPeople.random().id, 12, "Kotlin in Action, 2nd Edition"),
 )
 
+val demoExpensesWithPeople = demoExpenses
+    .associateWith { expense -> demoPeople.find { it.id == expense.paidByPersonId }!! }
+    .map { (expense, person) -> ExpenseWithPerson(expense, person) }
+
 private val demoAvatars = listOf(
     Res.drawable.stock1,
     Res.drawable.stock2,
@@ -33,7 +40,3 @@ private val demoAvatars = listOf(
 )
 
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
-
-val expensesWithPeople = demoExpenses
-    .associateWith { expense -> demoPeople.find { it.id == expense.paidByPersonId }!! }
-    .map { (expense, person) -> ExpenseWithPerson(expense, person) }

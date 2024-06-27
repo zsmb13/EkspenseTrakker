@@ -1,3 +1,5 @@
+package data
+
 data class Expense(
     val id: String,
     val paidByPersonId: String,
