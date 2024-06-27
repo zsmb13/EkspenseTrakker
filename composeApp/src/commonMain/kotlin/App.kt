@@ -12,12 +12,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import data.DemoInitializer
+import data.darkThemeKey
 import kotlinx.coroutines.flow.map
 import org.koin.compose.koinInject
-import ui.enterT
-import ui.exitT
-import ui.popEnterT
-import ui.popExitT
+import ui.*
 
 @Composable
 fun App() {
