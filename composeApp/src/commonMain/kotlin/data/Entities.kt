@@ -7,8 +7,8 @@ import androidx.room.*
     foreignKeys = [
         ForeignKey(
             entity = Person::class,
-            parentColumns = arrayOf("id"),
-            childColumns = arrayOf("paidByPersonId"),
+            parentColumns = ["id"],
+            childColumns = ["paidByPersonId"],
         ),
     ],
 )
