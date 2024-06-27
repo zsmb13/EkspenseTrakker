@@ -16,7 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import data.Expense
 import data.Person
+import data.peopleToAvatars
+import ekspensetrakker.composeapp.generated.resources.Res
+import ekspensetrakker.composeapp.generated.resources.paid_by
 import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Preview
