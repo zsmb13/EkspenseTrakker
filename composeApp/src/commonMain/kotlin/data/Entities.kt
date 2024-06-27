@@ -10,3 +10,8 @@ data class Person(
     val id: String,
     val name: String,
 )
+
+data class ExpenseWithPerson(
+    val expense: Expense,
+    val paidBy: Person,
+)

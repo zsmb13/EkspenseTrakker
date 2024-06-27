@@ -33,3 +33,11 @@ private val demoAvatars = listOf(
 )
 
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
+
+val expensesWithPeople = demoExpenses
+    .associateWith { expense ->
+        demoPeople.find { it.id == expense.paidByPersonId }!!
+    }
+    .map { (expense, person) ->
+        ExpenseWithPerson(expense, person)
+    }
