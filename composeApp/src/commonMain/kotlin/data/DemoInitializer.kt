@@ -33,14 +33,3 @@ private val demoAvatars = listOf(
 )
 
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
-
-@Composable
-fun DemoInitializer(
-    expenseDao: ExpenseDao = koinInject(),
-) {
-    LaunchedEffect(Unit) {
-        expenseDao.deleteAll()
-        demoPeople.forEach { expenseDao.insert(it) }
-        demoExpenses.forEach { expenseDao.insert(it) }
-    }
-}

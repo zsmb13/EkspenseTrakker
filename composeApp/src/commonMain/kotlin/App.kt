@@ -1,9 +1,6 @@
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -23,33 +20,9 @@ import ui.popExitT
 
 @Composable
 fun App() {
-    val dataStore = koinInject<DataStore<Preferences>>()
-    val darkTheme: Boolean by dataStore.data
-        .map { it[darkThemeKey] ?: false }
-        .collectAsState(false)
-
-    MaterialTheme(if (darkTheme) darkColors() else lightColors()) {
-
-        // TODO remove hardcoded init
-        DemoInitializer()
-
+    MaterialTheme {
         Surface(Modifier.fillMaxSize()) {
-            val navController = rememberNavController()
-            NavHost(
-                navController,
-                startDestination = "home",
-                enterTransition = enterT,
-                exitTransition = exitT,
-                popEnterTransition = popEnterT,
-                popExitTransition = popExitT,
-            ) {
-                composable("home") {
-                    HomeScreen(onAddNewRecord = { navController.navigate("add") })
-                }
-                composable("add") {
-                    AddScreen(onRecordCreated = { navController.navigateUp() }, onBack = { navController.navigateUp() })
-                }
-            }
+            Text("Hello Compose!")
         }
     }
 }
