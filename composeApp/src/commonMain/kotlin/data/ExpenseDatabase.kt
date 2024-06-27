@@ -1,3 +1,5 @@
+package data
+
 import androidx.room.*
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers

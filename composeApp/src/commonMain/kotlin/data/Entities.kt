@@ -1,3 +1,5 @@
+package data
+
 import androidx.room.*
 
 @Entity(

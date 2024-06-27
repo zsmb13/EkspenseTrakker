@@ -1,9 +1,12 @@
+package data
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.koin.compose.koinInject
+import randomUUID
 
 val demoPeople = listOf(
     Person("random-id-for-a", "Alex"),

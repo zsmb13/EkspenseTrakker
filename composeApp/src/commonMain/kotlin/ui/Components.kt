@@ -1,3 +1,5 @@
+package ui
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,6 +14,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import data.Expense
+import data.Person
+import data.peopleToAvatars
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.paid_by
 import org.jetbrains.compose.resources.imageResource
