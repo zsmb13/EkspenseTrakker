@@ -17,6 +17,7 @@ ksp = "2.0.0-1.0.22"
 androidxRoom = "2.7.0-alpha04"
 sqlite = "2.5.0-alpha04"
 koin-compose = "1.2.0-Beta4"
+lifecycle = "2.8.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -34,7 +35,8 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin-compose" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version = "2.7.0-alpha07" }
-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version = "2.8.0-rc03" }
+lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
+lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version = "1.1.1" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "1.8.1" }
 
