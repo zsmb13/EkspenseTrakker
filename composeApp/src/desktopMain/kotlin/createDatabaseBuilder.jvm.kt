@@ -1,5 +1,6 @@
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import data.ExpenseDatabase
 import java.io.File
 
 fun createDatabaseBuilder(): RoomDatabase.Builder<ExpenseDatabase> {
