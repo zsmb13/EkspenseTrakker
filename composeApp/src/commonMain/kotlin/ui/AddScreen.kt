@@ -19,6 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.add_expense
 import ekspensetrakker.composeapp.generated.resources.amount
@@ -34,7 +35,7 @@ fun AddScreen(
     onBack: () -> Unit,
     viewModel: AddViewModel = koinViewModel(),
 ) {
-    val recordCreated by viewModel.recordCreated.collectAsState()
+    val recordCreated by viewModel.recordCreated.collectAsStateWithLifecycle()
     LaunchedEffect(recordCreated) {
         if (recordCreated) onRecordCreated()
     }
@@ -42,8 +43,8 @@ fun AddScreen(
     var amount by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
 
-    val people by viewModel.people.collectAsState()
-    val personId by viewModel.personId.collectAsState()
+    val people by viewModel.people.collectAsStateWithLifecycle()
+    val personId by viewModel.personId.collectAsStateWithLifecycle()
 
     Surface(Modifier.fillMaxSize()) {
         Column(

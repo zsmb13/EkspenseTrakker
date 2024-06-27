@@ -7,14 +7,13 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ekspensetrakker.composeapp.generated.resources.*
 import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.add_expense
@@ -28,7 +27,7 @@ fun HomeScreen(
     onAddNewRecord: () -> Unit,
     viewModel: HomeViewModel = koinViewModel(),
 ) {
-    val expenses by viewModel.expenses.collectAsState()
+    val expenses by viewModel.expenses.collectAsStateWithLifecycle()
 
     val total = remember(expenses) { expenses.sumOf { it.expense.amount } }
 
