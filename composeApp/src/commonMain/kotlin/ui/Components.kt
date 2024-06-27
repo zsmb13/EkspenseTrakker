@@ -18,7 +18,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 fun PersonItemPreview() {
-    PersonItem(Person("", "Preview Pam"))
+    PersonItem(Person("random-id-for-b", "Blake"))
 }
 
 @Composable
@@ -38,22 +38,11 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 fun ExpenseItemPreview() {
     ExpenseItem(
         expense = Expense("", "", 20, "Real business expense"),
-        paidBy = Person("", "James"),
+        paidBy = Person("random-id-for-b", "Blake"),
     )
 }
 
 @Composable
 fun ExpenseItem(expense: Expense, paidBy: Person) {
-<<<<<<< HEAD
-    Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Avatar(paidBy, Modifier.size(40.dp))
-        Column(Modifier.padding(horizontal = 16.dp).weight(1f)) {
-            Text(expense.description, fontSize = 20.sp)
-            Text("paid by ${paidBy.name}")
-        }
-        Text("$${expense.amount}")
-    }
-=======
 
->>>>>>> ebddd46 (Starter)
 }
