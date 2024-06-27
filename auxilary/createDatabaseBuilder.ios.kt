@@ -1,5 +1,6 @@
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import data.ExpenseDatabase
 import platform.Foundation.NSHomeDirectory
 
 fun createDatabaseBuilder(): RoomDatabase.Builder<ExpenseDatabase> {
