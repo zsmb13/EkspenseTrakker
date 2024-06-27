@@ -12,13 +12,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ekspensetrakker.composeapp.generated.resources.Res
+import ekspensetrakker.composeapp.generated.resources.paid_by
 import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Preview
 @Composable
 fun PersonItemPreview() {
-    PersonItem(Person("", "Preview Pam"))
+    PersonItem(Person("random-id-for-b", "Blake"))
 }
 
 @Composable
@@ -51,7 +54,7 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 fun ExpenseItemPreview() {
     ExpenseItem(
         expense = Expense("", "", 20, "Real business expense"),
-        paidBy = Person("", "James"),
+        paidBy = Person("random-id-for-b", "Blake"),
     )
 }
 
@@ -61,7 +64,7 @@ fun ExpenseItem(expense: Expense, paidBy: Person) {
         Avatar(paidBy, Modifier.size(40.dp))
         Column(Modifier.padding(horizontal = 16.dp).weight(1f)) {
             Text(expense.description, fontSize = 20.sp)
-            Text("paid by ${paidBy.name}")
+            Text(stringResource(Res.string.paid_by, paidBy.name))
         }
         Text("$${expense.amount}")
     }
