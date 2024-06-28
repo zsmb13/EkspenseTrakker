@@ -42,9 +42,7 @@ fun HomeScreen(
         Spacer(
             Modifier.padding(5.dp).height(2.dp).fillMaxWidth().background(MaterialTheme.colors.primary)
         )
-        Text(stringResource(Res.string.total, total), fontSize = 24.sp, modifier = Modifier.padding(16.dp).clickable {
-            viewModel.toggleTheme()
-        })
+        Text(stringResource(Res.string.total, total), fontSize = 24.sp, modifier = Modifier.padding(16.dp))
         Button(onClick = { onAddNewRecord() }) {
             Text(stringResource(Res.string.add_expense))
         }

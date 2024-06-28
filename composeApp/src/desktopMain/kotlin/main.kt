@@ -16,7 +16,6 @@ import org.jetbrains.compose.resources.imageResource
 fun main() {
     initKoin(
         databaseBuilder = createDatabaseBuilder(),
-        dataStore = createDataStore(),
     )
 
     application {
