@@ -33,13 +33,12 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @OptIn(KoinExperimentalAPI::class)
 @Composable
 fun AddScreen(
-    onRecordCreated: () -> Unit,
-    onBack: () -> Unit,
+    onDone: () -> Unit,
     viewModel: AddViewModel = koinViewModel(),
 ) {
     val recordCreated by viewModel.recordCreated.collectAsStateWithLifecycle()
     LaunchedEffect(recordCreated) {
-        if (recordCreated) onRecordCreated()
+        if (recordCreated) onDone()
     }
 
     var amount by remember { mutableStateOf("") }
@@ -53,7 +52,7 @@ fun AddScreen(
             modifier = Modifier.fillMaxSize().padding(vertical = 20.dp, horizontal = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            IconButton(onClick = onBack, Modifier.align(Alignment.Start)) {
+            IconButton(onClick = onDone, Modifier.align(Alignment.Start)) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
             }
             Spacer(Modifier.height(70.dp))

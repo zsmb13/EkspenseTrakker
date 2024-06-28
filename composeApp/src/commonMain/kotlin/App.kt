@@ -44,7 +44,7 @@ fun App() {
                     HomeScreen(onAddNewRecord = { navController.navigate("add") })
                 }
                 composable("add") {
-                    AddScreen(onRecordCreated = { navController.navigateUp() }, onBack = { navController.navigateUp() })
+                    AddScreen(onDone = { navController.navigateUp() })
                 }
             }
         }
