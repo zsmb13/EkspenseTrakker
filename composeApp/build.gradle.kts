@@ -36,6 +36,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            // TODO remove once https://issuetracker.google.com/issues/336842920 is resolved
             implementation("androidx.lifecycle:lifecycle-runtime-android:2.8.2")
         }
         desktopMain.dependencies {
