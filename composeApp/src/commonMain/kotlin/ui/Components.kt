@@ -31,7 +31,11 @@ fun PersonItemPreview() {
 
 @Composable
 fun PersonItem(person: Person, modifier: Modifier = Modifier) {
-
+    Column(modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Avatar(person)
+        Spacer(Modifier.size(8.dp))
+        Text(person.name)
+    }
 }
 
 @Composable
