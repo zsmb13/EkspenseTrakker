@@ -15,20 +15,13 @@ class AddViewModel(
     val people: StateFlow<List<Person>> = expenseDao.getAllPeople()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    private val _personId = MutableStateFlow<String?>(null)
-    val personId: StateFlow<String?> = _personId
-
     private val _recordCreated = MutableStateFlow(false)
     val recordCreated: StateFlow<Boolean> = _recordCreated
 
-    fun selectPerson(personId: String) {
-        this._personId.update { personId }
-    }
-
-    fun createRecord(amount: Int, description: String) {
+    fun createRecord(amount: Int, description: String, personId: String) {
         val expense = Expense(
             id = randomUUID(),
-            paidByPersonId = requireNotNull(personId.value),
+            paidByPersonId = personId,
             amount = amount,
             description = description,
         )

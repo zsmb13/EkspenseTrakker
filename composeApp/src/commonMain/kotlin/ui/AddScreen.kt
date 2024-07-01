@@ -43,9 +43,9 @@ fun AddScreen(
 
     var amount by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+    var personId by remember { mutableStateOf<String?>(null) }
 
     val people by viewModel.people.collectAsStateWithLifecycle()
-    val personId by viewModel.personId.collectAsStateWithLifecycle()
 
     Surface(Modifier.fillMaxSize()) {
         Column(
@@ -71,7 +71,7 @@ fun AddScreen(
                         modifier = Modifier
                             .clip(roundedShape)
                             .border(2.dp, borderColor, roundedShape)
-                            .clickable { viewModel.selectPerson(person.id) },
+                            .clickable { personId = person.id },
                     )
                 }
             }
@@ -93,7 +93,7 @@ fun AddScreen(
             )
 
             Button(
-                onClick = { viewModel.createRecord(amount.toInt(), description) },
+                onClick = { viewModel.createRecord(amount.toInt(), description, requireNotNull(personId)) },
                 enabled = personId != null && amount.toIntOrNull() != null,
             ) {
                 Text(stringResource(Res.string.add_expense))
