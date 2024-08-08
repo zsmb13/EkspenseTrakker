@@ -6,8 +6,6 @@ import ekspensetrakker.composeapp.generated.resources.Res
 import ekspensetrakker.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.koin.compose.koinInject
-import randomUUID
-import kotlin.random.Random
 
 val demoPeople = listOf(
     Person(1, "Alex"),

@@ -7,8 +7,6 @@ import data.ExpenseDao
 import data.Person
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import randomUUID
-import kotlin.random.Random
 
 class AddViewModel(
     private val expenseDao: ExpenseDao,
