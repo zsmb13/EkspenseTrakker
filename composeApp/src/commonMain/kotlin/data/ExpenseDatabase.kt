@@ -6,13 +6,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 
-@Database(entities = [Expense::class, Person::class], version = 1)
-abstract class ExpenseDatabase : RoomDatabase(), DB {
-    abstract fun expenseDao(): ExpenseDao
+expect object MyDatabaseCtor : RoomDatabaseConstructor<ExpenseDatabase>
 
-    override fun clearAllTables() {
-        super.clearAllTables()
-    }
+@Database(entities = [Expense::class, Person::class], version = 1)
+@ConstructedBy(MyDatabaseCtor::class)
+abstract class ExpenseDatabase : RoomDatabase() {
+    abstract fun expenseDao(): ExpenseDao
 }
 
 fun RoomDatabase.Builder<ExpenseDatabase>.getRoomDatabase(): ExpenseDatabase {
@@ -21,11 +20,6 @@ fun RoomDatabase.Builder<ExpenseDatabase>.getRoomDatabase(): ExpenseDatabase {
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()
-}
-
-// TODO remove this workaround when https://issuetracker.google.com/issues/348166275 is fixed
-interface DB {
-    fun clearAllTables() {}
 }
 
 @Dao

@@ -26,7 +26,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 fun PersonItemPreview() {
-    PersonItem(Person("random-id-for-b", "Blake"))
+    PersonItem(Person(2, "Blake"))
 }
 
 @Composable
@@ -58,8 +58,8 @@ fun Avatar(person: Person, modifier: Modifier = Modifier) {
 @Composable
 fun ExpenseItemPreview() {
     ExpenseItem(
-        expense = Expense("", "", 20, "Real business expense"),
-        paidBy = Person("random-id-for-b", "Blake"),
+        expense = Expense(0, 2, 20, "Real business expense"),
+        paidBy = Person(2, "Blake"),
     )
 }
 

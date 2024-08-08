@@ -8,6 +8,7 @@ import data.Person
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import randomUUID
+import kotlin.random.Random
 
 class AddViewModel(
     private val expenseDao: ExpenseDao,
@@ -18,9 +19,8 @@ class AddViewModel(
     private val _recordCreated = MutableStateFlow(false)
     val recordCreated: StateFlow<Boolean> = _recordCreated
 
-    fun createRecord(amount: Int, description: String, personId: String) {
+    fun createRecord(amount: Int, description: String, personId: Long) {
         val expense = Expense(
-            id = randomUUID(),
             paidByPersonId = personId,
             amount = amount,
             description = description,
