@@ -13,20 +13,17 @@ import androidx.room.*
     ],
 )
 data class Expense(
-    // TODO replace with Long once https://issuetracker.google.com/issues/341002184 is fixed
-    @PrimaryKey
-    val id: String,
-    // TODO replace with Long once https://issuetracker.google.com/issues/341002184 is fixed
-    val paidByPersonId: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
+    val paidByPersonId: Long,
     val amount: Int,
     val description: String,
 )
 
 @Entity(tableName = "people")
 data class Person(
-    // TODO replace with Long once https://issuetracker.google.com/issues/341002184 is fixed
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
     val name: String,
 )
 

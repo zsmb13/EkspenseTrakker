@@ -43,7 +43,8 @@ fun AddScreen(
 
     var amount by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    var personId by remember { mutableStateOf<String?>(null) }
+    var personId by remember { mutableStateOf<Long?>(null) }
+
 
     val people by viewModel.people.collectAsStateWithLifecycle()
 
