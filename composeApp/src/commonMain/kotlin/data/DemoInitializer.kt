@@ -26,6 +26,10 @@ val demoExpenses = listOf(
     Expense(paidByPersonId = demoPeople.random().id, amount = 12, description = "Kotlin in Action, 2nd Edition"),
 )
 
+val demoExpensesWithPeople = demoExpenses
+    .associateWith { expense -> demoPeople.first { it.id == expense.paidByPersonId } }
+    .map { (expense, person) -> ExpenseWithPerson(expense, person) }
+
 private val demoAvatars = listOf(
     Res.drawable.stock1,
     Res.drawable.stock2,
@@ -35,13 +39,3 @@ private val demoAvatars = listOf(
 )
 
 val peopleToAvatars: Map<Person, DrawableResource> = demoPeople.zip(demoAvatars).toMap()
-
-@Composable
-fun DemoInitializer() {
-    val expenseDao: ExpenseDao = koinInject()
-    LaunchedEffect(Unit) {
-        expenseDao.deleteAll()
-        demoPeople.forEach { expenseDao.insert(it) }
-        demoExpenses.forEach { expenseDao.insert(it) }
-    }
-}

@@ -42,16 +42,7 @@ fun PersonItem(person: Person, modifier: Modifier = Modifier) {
 fun Avatar(person: Person, modifier: Modifier = Modifier) {
     val color = remember(person) { Color(120, person.name.hashCode() % 255, 100) }
 
-    Box(modifier.size(48.dp).clip(CircleShape).background(color)) {
-        peopleToAvatars[person]?.let {
-            Image(
-                bitmap = imageResource(it),
-                contentDescription = person.name,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop,
-            )
-        }
-    }
+    Box(modifier.size(48.dp).clip(CircleShape).background(color))
 }
 
 @Preview
@@ -65,12 +56,7 @@ fun ExpenseItemPreview() {
 
 @Composable
 fun ExpenseItem(expense: Expense, paidBy: Person) {
-    Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Avatar(paidBy, Modifier.size(40.dp))
-        Column(Modifier.padding(horizontal = 16.dp).weight(1f)) {
-            Text(expense.description, fontSize = 20.sp)
-            Text(stringResource(Res.string.paid_by, paidBy.name))
-        }
-        Text("$${expense.amount}")
+    Row {
+
     }
 }

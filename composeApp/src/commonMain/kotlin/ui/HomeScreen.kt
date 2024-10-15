@@ -15,36 +15,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import ekspensetrakker.composeapp.generated.resources.Res
-import ekspensetrakker.composeapp.generated.resources.add_expense
-import ekspensetrakker.composeapp.generated.resources.total
-import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.annotation.KoinExperimentalAPI
 
-@OptIn(KoinExperimentalAPI::class)
 @Composable
-fun HomeScreen(
-    onAddNewRecord: () -> Unit,
-    viewModel: HomeViewModel = koinViewModel(),
-) {
-    val expenses by viewModel.expenses.collectAsStateWithLifecycle()
-
-    val total = remember(expenses) { expenses.sumOf { it.expense.amount } }
-
+fun HomeScreen() {
     Column(Modifier.fillMaxSize().padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyColumn(Modifier.fillMaxWidth().weight(1f)) {
-            items(expenses) {
-                ExpenseItem(expense = it.expense, paidBy = it.paidBy)
-            }
+
         }
         Spacer(
             Modifier.padding(5.dp).height(2.dp).fillMaxWidth().background(MaterialTheme.colors.primary)
         )
-        Text(stringResource(Res.string.total, total), fontSize = 24.sp, modifier = Modifier.padding(16.dp))
-        Button(onClick = { onAddNewRecord() }) {
-            Text(stringResource(Res.string.add_expense))
+        Text("Total: ?", fontSize = 24.sp, modifier = Modifier.padding(16.dp))
+        Button(onClick = { }) {
+            Text("Add?")
         }
     }
 }
