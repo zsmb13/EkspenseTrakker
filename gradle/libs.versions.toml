@@ -1,28 +1,29 @@
 [versions]
-agp = "8.2.0"
+agp = "8.6.1"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
-androidx-activityCompose = "1.9.0"
-compose-plugin = "1.6.10"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.22"
-androidxRoom = "2.7.0-alpha07"
-sqlite = "2.5.0-alpha04"
-koin-compose = "1.2.0-Beta4"
-lifecycle = "2.8.0"
+androidx-activityCompose = "1.9.2"
+androidx-room = "2.7.0-alpha09"
+compose-plugin = "1.7.0-rc01"
+androidx-lifecycle = "2.8.2"
+androidx-navigation = "2.8.0-alpha10"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.25"
+sqlite = "2.5.0-alpha09"
+koin-compose = "4.0.0"
+kotlinx-coroutines = "1.9.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
-androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin-compose" }
-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version = "2.7.0-alpha07" }
-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
-androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version = "1.1.1" }
-kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "1.8.1" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

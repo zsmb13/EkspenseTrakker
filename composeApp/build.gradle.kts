@@ -57,7 +57,6 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.lifecycle.runtime.compose)
-            implementation(libs.androidx.datastore.preferences)
         }
     }
 }
