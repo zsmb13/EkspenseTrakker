@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -52,6 +53,7 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.kotlinx.serialization.core)
             implementation(libs.navigation.compose)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.lifecycle.runtime.compose)

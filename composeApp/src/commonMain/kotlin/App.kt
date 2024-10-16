@@ -7,7 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import data.DemoInitializer
+import kotlinx.serialization.Serializable
 import ui.*
+
+@Serializable
+data object HomeRoute
+
+@Serializable
+data object AddRoute
 
 @Composable
 fun App() {
@@ -19,16 +26,16 @@ fun App() {
             val navController = rememberNavController()
             NavHost(
                 navController,
-                startDestination = "home",
+                startDestination = HomeRoute,
                 enterTransition = enterT,
                 exitTransition = exitT,
                 popEnterTransition = popEnterT,
                 popExitTransition = popExitT,
             ) {
-                composable("home") {
-                    HomeScreen(onAddNewRecord = { navController.navigate("add") })
+                composable<HomeRoute> {
+                    HomeScreen(onAddNewRecord = { navController.navigate(AddRoute) })
                 }
-                composable("add") {
+                composable<AddRoute> {
                     AddScreen(onDone = { navController.navigateUp() })
                 }
             }
